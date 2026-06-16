@@ -2,11 +2,13 @@
   "name": "topmanidmb-training-lab",
   "version": "0.1.0",
   "private": true,
+  "description": "TOPMANIDMB Training Lab — mock investigation training prototype (local only)",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "serve": "npx serve out"
   },
   "dependencies": {
     "react": "^18",

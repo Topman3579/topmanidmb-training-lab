@@ -3,25 +3,30 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --lab-bg: #f4f7fc;
+  --lab-surface: #ffffff;
+  --lab-ink: #0f1d3a;
+  --lab-muted: #5b6b85;
+  --lab-border: #d6e1f4;
+  --lab-accent: #2563eb;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--lab-ink);
+  background: var(--lab-bg);
+  min-height: 100dvh;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  .lab-card {
+    @apply rounded-2xl border border-navy-100 bg-white shadow-card;
+  }
+
+  .lab-btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-navy-800 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-navy-900 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .lab-btn-secondary {
+    @apply inline-flex items-center justify-center rounded-xl border border-navy-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 transition hover:border-navy-300 hover:bg-navy-50;
   }
 }
