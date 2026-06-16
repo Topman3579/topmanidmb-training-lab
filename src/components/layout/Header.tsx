@@ -3,6 +3,7 @@ import { APP_NAME } from "@/lib/constants";
 
 const NAV = [
   { href: "/", label: "ห้องทดลอง" },
+  { href: "/3d-evidence-room/", label: "3D Evidence Room" },
   { href: "/progress/", label: "ความคืบหน้า" },
   { href: "/about/", label: "เกี่ยวกับ" },
 ];

@@ -84,3 +84,37 @@ export interface ScenarioSummary {
   tagline: string;
   taglineEn: string;
 }
+
+// --- 3D Evidence Room (separate from 2D game) ---
+
+export type EvidenceRoom3DClass =
+  | "fact"
+  | "suspicion"
+  | "requires_verification"
+  | "recommended_next_step";
+
+export type EvidenceRoom3DObjectType =
+  | "document_box"
+  | "laptop"
+  | "phone"
+  | "receipt_stack"
+  | "case_folder";
+
+export interface EvidenceRoom3DItem {
+  id: string;
+  objectType: EvidenceRoom3DObjectType;
+  title: string;
+  titleEn: string;
+  description: string;
+  source: string;
+  correctClass: EvidenceRoom3DClass;
+  hint: string;
+  position: [number, number, number];
+  color: string;
+}
+
+export interface EvidenceRoom3DAnswer {
+  itemId: string;
+  selected: EvidenceRoom3DClass;
+  correct: boolean;
+}
