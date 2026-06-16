@@ -1,6 +1,30 @@
-import type { EvidenceRoom3DClass, EvidenceRoom3DItem } from "@/lib/types";
+import type { EvidenceRoom3DClass, EvidenceRoom3DItem, EvidenceRoom3DMission } from "@/lib/types";
 
 export const EVIDENCE_ROOM_3D_CODE = "LAB-3D-2026-ROOM";
+
+export const evidenceRoom3DMission: EvidenceRoom3DMission = {
+  code: EVIDENCE_ROOM_3D_CODE,
+  title: "ภารกิจจำลอง: ตรวจสอบห้องเก็บหลักฐาน DMK-ROOM-A",
+  titleEn: "Training Mission: Inspect Mock Evidence Room DMK-ROOM-A",
+  briefing:
+    "หน่วยฝึก LAB แจ้งให้ตรวจสอบห้องเก็บหลักฐานจำลอง มีวัตถุ 5 ชิ้นบนโต๊ะกลาง ภารกิจของคุณคือคลิกแต่ละชิ้น อ่านรายละเอียด แล้วจำแนกให้ถูกต้องตามหลัก Verification First — ทุกอย่างเป็นข้อมูลจำลองเท่านั้น",
+  objectives: [
+    "สำรวจห้อง 3D และเลือกหลักฐานบนโต๊ะทีละชิ้น",
+    "จำแนกเป็น ข้อเท็จจริง · ข้อสงสัย · ต้องตรวจสอบ · ขั้นตอนถัดไป",
+    "อ่านคำอธิบายหลังจำแนนเพื่อทำความเข้าใจแนวทางสืบสวน",
+    "ทำคะแนนให้ได้อย่างน้อย 70/100",
+  ],
+  instructions: [
+    "ใช้เมาส์ลากเพื่อหมุนมุมมอง · เลื่อนซูมได้",
+    "คลิกวัตถุบนโต๊ะเพื่อเปิดการ์ดหลักฐาน",
+    "เลือกการจำแนกหนึ่งข้อ แล้วอ่านคำอธิบาย",
+    "จำแนนครบ 5 ชิ้นเพื่อดูสรุปผลภารกิจ",
+  ],
+};
+
+export function getClassLabel(cls: EvidenceRoom3DClass): string {
+  return CLASSIFICATION_OPTIONS.find((o) => o.key === cls)?.label ?? cls;
+}
 
 export const CLASSIFICATION_OPTIONS: {
   key: EvidenceRoom3DClass;
@@ -35,6 +59,8 @@ export const evidenceRoom3DItems: EvidenceRoom3DItem[] = [
     source: "ห้องเก็บหลักฐานจำลอง — บันทึกรับเข้า",
     correctClass: "fact",
     hint: "เป็นสิ่งที่บันทึกและตรวจสอบได้จากเอกสาร/ป้ายกำกับ",
+    explanation:
+      "ป้ายกำกับและรายการภายในกล่องเป็นข้อมูลที่ตรวจสอบได้โดยตรงจากเอกสารจำลอง จึงจัดเป็น ข้อเท็จจริง — ไม่ใช่ข้อสงสัยหรือขั้นตอนถัดไป",
     position: [-1.4, 0.55, 0.1],
     color: "#8B5E3C",
   },
@@ -48,6 +74,8 @@ export const evidenceRoom3DItems: EvidenceRoom3DItem[] = [
     source: "ระบบคลังจำลอง — หน้าจอเทรนนิ่ง",
     correctClass: "requires_verification",
     hint: "มีข้อมูล แต่ยังต้องตรวจสอบความถูกต้องและเจ้าของบัญชีก่อนใช้สรุป",
+    explanation:
+      "บันทึกล็อกอินมีข้อมูล แต่ยังไม่ยืนยันว่าใครเป็นผู้ใช้หรือเกี่ยวข้องกับเหตุจริง ต้องขอข้อมูลเพิ่มและตรวจสอบก่อนนำไปสรุป",
     position: [-0.5, 0.52, -0.15],
     color: "#4B5563",
   },
@@ -61,6 +89,8 @@ export const evidenceRoom3DItems: EvidenceRoom3DItem[] = [
     source: "อุปกรณ์จำลอง — ข้อความภายในเครื่อง",
     correctClass: "suspicion",
     hint: "เป็นข้อมูลที่น่าสนใจ แต่ยังไม่ถึงขั้นข้อเท็จจริง",
+    explanation:
+      "ข้อความนัดส่งของน่าสนใจและอาจเป็นเบาะแส แต่ยังไม่ใช่ข้อเท็จจริงที่พิสูจน์แล้ว จึงจัดเป็น ข้อสงสัย ที่ต้องตามหลักฐานรองรับ",
     position: [0.2, 0.5, 0.2],
     color: "#1F2937",
   },
@@ -74,6 +104,8 @@ export const evidenceRoom3DItems: EvidenceRoom3DItem[] = [
     source: "เอกสารจำลอง — ร้าน DMK Supply",
     correctClass: "fact",
     hint: "เอกสารที่อ่านและตรวจสอบได้โดยตรง",
+    explanation:
+      "ใบเสร็จจำลองระบุยอดและวันที่ชัดเจน อ่านได้จากเอกสารโดยตรง จึงเป็นข้อเท็จจริงที่นำไปเปรียบเทียบกับบันทึกอื่นได้",
     position: [0.9, 0.52, -0.05],
     color: "#F3F4F6",
   },
@@ -87,6 +119,8 @@ export const evidenceRoom3DItems: EvidenceRoom3DItem[] = [
     source: "แฟ้มแผนปฏิบัติการจำลอง",
     correctClass: "recommended_next_step",
     hint: "เป็นแนวทางปฏิบัติ ไม่ใช่ข้อเท็จจริงหรือข้อสงสัยโดยตรง",
+    explanation:
+      "แฟ้มระบุแผนปฏิบัติการจำลอง — เป็นแนวทางขั้นตอนถัดไปที่แนะนำ ไม่ใช่ข้อเท็จจริงหรือข้อสงสัยที่พิสูจน์แล้ว",
     position: [1.5, 0.5, 0.15],
     color: "#1e3a8a",
   },

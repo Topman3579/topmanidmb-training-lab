@@ -100,6 +100,8 @@ export type EvidenceRoom3DObjectType =
   | "receipt_stack"
   | "case_folder";
 
+export type EvidenceRoom3DPhase = "briefing" | "playing" | "debrief";
+
 export interface EvidenceRoom3DItem {
   id: string;
   objectType: EvidenceRoom3DObjectType;
@@ -109,8 +111,18 @@ export interface EvidenceRoom3DItem {
   source: string;
   correctClass: EvidenceRoom3DClass;
   hint: string;
+  explanation: string;
   position: [number, number, number];
   color: string;
+}
+
+export interface EvidenceRoom3DMission {
+  code: string;
+  title: string;
+  titleEn: string;
+  briefing: string;
+  objectives: string[];
+  instructions: string[];
 }
 
 export interface EvidenceRoom3DAnswer {
