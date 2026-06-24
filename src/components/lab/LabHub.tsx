@@ -20,22 +20,23 @@ export function LabHub() {
 
   return (
     <div className="space-y-8 animate-fade-in-up">
-      <section className="lab-card p-6 sm:p-8">
-        <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">Training Lab</p>
-        <h1 className="mt-2 font-display text-3xl font-bold text-navy-900 sm:text-4xl">
+      <section className="lab-card p-7 sm:p-10">
+        <p className="lab-kicker">Training Lab</p>
+        <h1 className="mt-3 font-display text-4xl font-semibold leading-tight text-navy-900 sm:text-5xl">
           ห้องทดลองฝึกสืบสวน
         </h1>
-        <p className="mt-3 max-w-3xl text-base leading-relaxed text-navy-700">
+        <div className="mt-4 h-px w-14 bg-gold" />
+        <p className="mt-5 max-w-3xl text-base leading-relaxed text-navy-700 sm:text-lg">
           เลือกสถานการณ์จำลอง ฝึก 4 ขั้น: จัดหลักฐาน · เรียงเหตุการณ์ · จับ Red Flag ใน AI · เลือกทางดำเนินการ
           ทุกอย่างเป็นข้อมูลจำลอง — ไม่มีคดีจริง
         </p>
       </section>
 
-      <section className="lab-card overflow-hidden border-brand-200 bg-gradient-to-r from-brand-50 to-white p-6 sm:p-8">
+      <section className="lab-card overflow-hidden border-gold-400/30 bg-gradient-to-r from-ivory-50 to-paper p-6 sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">โหมดใหม่</p>
-            <h2 className="mt-1 font-display text-xl font-bold text-navy-900">3D Evidence Room</h2>
+            <p className="lab-kicker">โหมดใหม่</p>
+            <h2 className="mt-1 font-display text-2xl font-semibold text-navy-900">3D Evidence Room</h2>
             <p className="mt-2 max-w-2xl text-sm text-navy-700">
               สำรวจห้องเก็บหลักฐานจำลองแบบ 3D คลิกวัตถุ 5 ชิ้น แล้วจำแนกเป็น ข้อเท็จจริง · ข้อสงสัย · ต้องตรวจสอบ · ขั้นตอนถัดไป
             </p>

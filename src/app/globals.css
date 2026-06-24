@@ -3,34 +3,66 @@
 @tailwind utilities;
 
 :root {
-  --lab-bg: #f4f7fc;
-  --lab-surface: #ffffff;
-  --lab-ink: #0f1d3a;
-  --lab-muted: #5b6b85;
-  --lab-border: #d6e1f4;
-  --lab-accent: #2563eb;
+  --lab-bg: #f4efe3;
+  --lab-surface: #fffdf7;
+  --lab-ink: #1a2238;
+  --lab-muted: #6e6755;
+  --lab-border: rgba(26, 34, 56, 0.12);
+  --lab-accent: #b0894d;
 }
 
 body {
   color: var(--lab-ink);
   background: var(--lab-bg);
   min-height: 100dvh;
+  background-image:
+    radial-gradient(circle at 10% 4%, rgba(176, 137, 77, 0.05), transparent 42%),
+    radial-gradient(circle at 92% 96%, rgba(26, 34, 56, 0.04), transparent 46%);
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.01em;
+}
+
+/* visible keyboard focus (criterion 08) */
+:where(a, button, [role="button"], [tabindex]):focus-visible {
+  outline: 2px solid var(--lab-accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* respect reduced-motion (criterion 06) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @layer components {
   .lab-card {
-    @apply rounded-2xl border border-navy-100 bg-white shadow-card;
+    @apply rounded-2xl border border-navy-900/10 bg-paper shadow-card;
+  }
+
+  .lab-kicker {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-gold-600;
   }
 
   .lab-btn-primary {
-    @apply inline-flex items-center justify-center rounded-xl bg-navy-800 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-navy-900 disabled:cursor-not-allowed disabled:opacity-50;
+    @apply inline-flex items-center justify-center rounded-xl bg-navy-900 px-5 py-2.5 text-sm font-semibold text-ivory-50 transition hover:bg-navy-800 disabled:cursor-not-allowed disabled:opacity-50;
   }
 
   .lab-btn-secondary {
-    @apply inline-flex items-center justify-center rounded-xl border border-navy-200 bg-white px-5 py-2.5 text-sm font-semibold text-navy-800 transition hover:border-navy-300 hover:bg-navy-50;
+    @apply inline-flex items-center justify-center rounded-xl border border-navy-900/15 bg-paper px-5 py-2.5 text-sm font-semibold text-navy-800 transition hover:border-gold hover:bg-ivory-50;
   }
 
   .lab-mission-badge {
-    @apply inline-flex items-center rounded-full border border-navy-200 bg-navy-50 px-3 py-1 text-xs font-semibold text-navy-700;
+    @apply inline-flex items-center rounded-full border border-gold-400/40 bg-ivory-50 px-3 py-1 text-xs font-semibold text-gold-600;
   }
 }

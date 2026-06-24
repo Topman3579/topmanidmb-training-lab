@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sarabun, IBM_Plex_Sans_Thai } from "next/font/google";
+import { Sarabun, IBM_Plex_Sans_Thai, Fraunces, Noto_Serif_Thai } from "next/font/google";
 import { AppShell } from "@/components/layout/AppShell";
 import { APP_NAME, APP_TAGLINE } from "@/lib/constants";
 import "./globals.css";
@@ -18,6 +18,22 @@ const ibmThai = IBM_Plex_Sans_Thai({
   display: "swap",
 });
 
+// serif display pair for editorial-luxury headlines (Latin + Thai)
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const notoSerifThai = Noto_Serif_Thai({
+  subsets: ["thai"],
+  weight: ["500", "600", "700"],
+  variable: "--font-noto-serif-thai",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: `${APP_NAME} — ห้องทดลองฝึกสืบสวน`,
@@ -25,11 +41,18 @@ export const metadata: Metadata = {
   },
   description: APP_TAGLINE,
   icons: { icon: "/favicon.svg" },
+  openGraph: {
+    title: `${APP_NAME} — ห้องทดลองฝึกสืบสวน`,
+    description: APP_TAGLINE,
+    type: "website",
+    locale: "th_TH",
+  },
+  twitter: { card: "summary_large_image", title: APP_NAME, description: APP_TAGLINE },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="th" className={`${sarabun.variable} ${ibmThai.variable}`}>
+    <html lang="th" className={`${sarabun.variable} ${ibmThai.variable} ${fraunces.variable} ${notoSerifThai.variable}`}>
       <body className="font-sans antialiased">
         <AppShell>{children}</AppShell>
       </body>

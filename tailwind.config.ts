@@ -6,7 +6,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: ["var(--font-sarabun)", "system-ui", "sans-serif"],
-        display: ["var(--font-ibm-thai)", "var(--font-sarabun)", "sans-serif"],
+        display: ["var(--font-fraunces)", "var(--font-noto-serif-thai)", "Georgia", "serif"],
+        serif: ["var(--font-fraunces)", "var(--font-noto-serif-thai)", "Georgia", "serif"],
       },
       colors: {
         navy: {
@@ -22,23 +23,37 @@ const config: Config = {
           900: "#0f1d3a",
           950: "#091327",
         },
+        // remapped blue → editorial gold so every existing `brand-*` accent turns warm in one move
         brand: {
-          50: "#eff6ff",
-          100: "#dbeafe",
-          200: "#bfdbfe",
-          300: "#93c5fd",
-          400: "#60a5fa",
-          500: "#3b82f6",
-          600: "#2563eb",
-          700: "#1d4ed8",
-          800: "#1e40af",
-          900: "#1e3a8a",
+          50: "#FBF6EC",
+          100: "#F3E9D2",
+          200: "#E7D3A8",
+          300: "#D8BB7B",
+          400: "#C9A86A",
+          500: "#B0894D",
+          600: "#9A763F",
+          700: "#7E5F33",
+          800: "#5F4827",
+          900: "#43331C",
         },
+        gold: {
+          DEFAULT: "#B0894D",
+          400: "#C9A86A",
+          500: "#B0894D",
+          600: "#9A763F",
+        },
+        ivory: {
+          DEFAULT: "#F4EFE3",
+          50: "#FBF8F0",
+          100: "#F4EFE3",
+          200: "#EAE1CE",
+        },
+        paper: "#FFFDF7",
         lab: {
-          accent: "#0ea5e9",
-          success: "#059669",
-          warn: "#d97706",
-          danger: "#dc2626",
+          accent: "#B0894D",
+          success: "#3E7A57",
+          warn: "#B0894D",
+          danger: "#B0544A",
         },
       },
       boxShadow: {
