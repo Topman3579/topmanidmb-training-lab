@@ -17,11 +17,15 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-navy-900/10 bg-ivory/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-        <Link href="/" className="group" onClick={() => setOpen(false)}>
-          <p className="font-display text-lg font-semibold text-navy-900 transition group-hover:text-gold-600">
-            {APP_NAME}
-          </p>
-          <p className="text-xs tracking-wide text-navy-500">Investigation Training Simulator</p>
+        <Link href="/" className="group flex items-center gap-3" onClick={() => setOpen(false)}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/brand/logo-icon.svg" alt="TOPMANIDMB" className="h-9 w-9 shrink-0 rounded-lg shadow-card" />
+          <span className="leading-tight">
+            <span className="block font-display text-lg font-semibold text-navy-900 transition group-hover:text-gold-600">
+              {APP_NAME}
+            </span>
+            <span className="block text-xs tracking-wide text-navy-500">Investigation Training Simulator</span>
+          </span>
         </Link>
 
         {/* desktop nav */}

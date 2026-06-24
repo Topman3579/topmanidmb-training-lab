@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --lab-bg: #f4efe3;
-  --lab-surface: #fffdf7;
-  --lab-ink: #1a2238;
-  --lab-muted: #6e6755;
-  --lab-border: rgba(26, 34, 56, 0.12);
-  --lab-accent: #b0894d;
+  /* canonical TOPMANIDMB "Living Emblem" tokens (BRAND.md) */
+  --lab-bg: #f7f3ea;
+  --lab-surface: #fffdf8;
+  --lab-ink: #14223a;
+  --lab-muted: #7c7565;
+  --lab-border: #e6decb;
+  --lab-accent: #c9a24b;
 }
 
 body {
@@ -16,8 +17,8 @@ body {
   background: var(--lab-bg);
   min-height: 100dvh;
   background-image:
-    radial-gradient(circle at 10% 4%, rgba(176, 137, 77, 0.05), transparent 42%),
-    radial-gradient(circle at 92% 96%, rgba(26, 34, 56, 0.04), transparent 46%);
+    radial-gradient(circle at 10% 4%, rgba(201, 162, 75, 0.06), transparent 42%),
+    radial-gradient(circle at 92% 96%, rgba(11, 22, 38, 0.04), transparent 46%);
 }
 
 h1,

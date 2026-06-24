@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Sarabun, IBM_Plex_Sans_Thai, Fraunces, Noto_Serif_Thai } from "next/font/google";
+import { Sarabun, IBM_Plex_Sans_Thai, Playfair_Display, Noto_Serif_Thai } from "next/font/google";
 import { AppShell } from "@/components/layout/AppShell";
 import { APP_NAME, APP_TAGLINE } from "@/lib/constants";
 import "./globals.css";
@@ -18,12 +18,12 @@ const ibmThai = IBM_Plex_Sans_Thai({
   display: "swap",
 });
 
-// serif display pair for editorial-luxury headlines (Latin + Thai)
-const fraunces = Fraunces({
+// canonical brand display pair — Playfair Display (EN) + Noto Serif Thai (TH)
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-fraunces",
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="th" className={`${sarabun.variable} ${ibmThai.variable} ${fraunces.variable} ${notoSerifThai.variable}`}>
+    <html lang="th" className={`${sarabun.variable} ${ibmThai.variable} ${playfair.variable} ${notoSerifThai.variable}`}>
       <body className="font-sans antialiased">
         <AppShell>{children}</AppShell>
       </body>

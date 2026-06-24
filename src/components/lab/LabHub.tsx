@@ -21,15 +21,25 @@ export function LabHub() {
   return (
     <div className="space-y-8 animate-fade-in-up">
       <section className="lab-card p-7 sm:p-10">
-        <p className="lab-kicker">Training Lab</p>
-        <h1 className="mt-3 font-display text-4xl font-semibold leading-tight text-navy-900 sm:text-5xl">
-          ห้องทดลองฝึกสืบสวน
-        </h1>
-        <div className="mt-4 h-px w-14 bg-gold" />
-        <p className="mt-5 max-w-3xl text-base leading-relaxed text-navy-700 sm:text-lg">
-          เลือกสถานการณ์จำลอง ฝึก 4 ขั้น: จัดหลักฐาน · เรียงเหตุการณ์ · จับ Red Flag ใน AI · เลือกทางดำเนินการ
-          ทุกอย่างเป็นข้อมูลจำลอง — ไม่มีคดีจริง
-        </p>
+        <div className="flex items-start gap-5 sm:gap-6">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/brand/logo-icon.svg"
+            alt=""
+            className="hidden h-16 w-16 shrink-0 rounded-xl shadow-card sm:block"
+          />
+          <div>
+            <p className="lab-kicker">Training Lab</p>
+            <h1 className="mt-3 font-display text-4xl font-semibold leading-tight text-navy-900 sm:text-5xl">
+              ห้องทดลองฝึกสืบสวน
+            </h1>
+            <div className="mt-4 h-px w-14 bg-gold" />
+            <p className="mt-5 max-w-3xl text-base leading-relaxed text-navy-700 sm:text-lg">
+              เลือกสถานการณ์จำลอง ฝึก 4 ขั้น: จัดหลักฐาน · เรียงเหตุการณ์ · จับ Red Flag ใน AI · เลือกทางดำเนินการ
+              ทุกอย่างเป็นข้อมูลจำลอง — ไม่มีคดีจริง
+            </p>
+          </div>
+        </div>
       </section>
 
       <section className="lab-card overflow-hidden border-gold-400/30 bg-gradient-to-r from-ivory-50 to-paper p-6 sm:p-8">
