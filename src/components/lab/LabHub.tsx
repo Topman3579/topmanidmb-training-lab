@@ -42,6 +42,21 @@ export function LabHub() {
         </div>
       </section>
 
+      <section className="lab-card overflow-hidden border-gold-400/30 bg-gradient-to-r from-navy-900 to-navy-800 p-6 text-ivory-50 sm:p-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">TOPMAN AI Academy Hub</p>
+            <h2 className="mt-1 font-display text-2xl font-semibold text-ivory-50">ศูนย์กลางบทเรียน AI และ Workflow</h2>
+            <p className="mt-2 max-w-2xl text-sm text-ivory-100">
+              รวมหมวด AI Video, Prompt Engineering, RAG, OSINT, Dashboard, War Room และมาตรฐาน ChatGPT → GitHub → Vercel
+            </p>
+          </div>
+          <Link href="/academy/" className="inline-flex shrink-0 items-center justify-center rounded-xl bg-gold px-5 py-2.5 text-sm font-semibold text-navy-900 transition hover:bg-gold-light">
+            เปิด Academy Hub →
+          </Link>
+        </div>
+      </section>
+
       <section className="lab-card overflow-hidden border-gold-400/30 bg-gradient-to-r from-brand-50 to-paper p-6 sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
