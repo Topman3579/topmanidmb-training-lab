@@ -15,8 +15,8 @@ const tracks = [
   },
   {
     title: "Prompt Engineering",
-    href: "#roadmap",
-    status: "ถัดไป",
+    href: "/prompt-engineering/",
+    status: "เปิดใช้งานแล้ว",
     description: "สูตร prompt สำหรับงานสืบสวน วิเคราะห์ข้อมูล สรุปเอกสาร และสร้างสื่อ",
   },
   {
@@ -92,8 +92,8 @@ export default function AcademyHubPage() {
               ใช้ ChatGPT เป็นศูนย์สั่งงาน เขียน/แก้ไฟล์ผ่าน GitHub และเผยแพร่ผ่าน Vercel Git Integration
               โดยยังสามารถใช้ Claude Code หรือ Terminal เป็นเครื่องมือเสริมเมื่อเป็นงานใหญ่
             </p>
-            <Link href="/ai-video/" className="mt-6 inline-flex rounded-xl bg-gold px-5 py-2.5 text-sm font-semibold text-navy-900 transition hover:bg-gold-light">
-              เริ่มจาก AI Video Guide →
+            <Link href="/prompt-engineering/" className="mt-6 inline-flex rounded-xl bg-gold px-5 py-2.5 text-sm font-semibold text-navy-900 transition hover:bg-gold-light">
+              เริ่มจาก Prompt Engineering →
             </Link>
           </div>
         </div>
@@ -104,7 +104,7 @@ export default function AcademyHubPage() {
           <p className="lab-kicker">Learning Tracks</p>
           <h2 className="mt-2 font-display text-2xl font-semibold text-navy-900 sm:text-3xl">หมวดบทเรียนหลัก</h2>
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-navy-700 sm:text-base">
-            ใช้หน้านี้เป็นศูนย์กลางสำหรับต่อยอดบทเรียนใหม่ในอนาคต โดยเริ่มจาก AI Video ที่เปิดใช้งานแล้ว
+            ใช้หน้านี้เป็นศูนย์กลางสำหรับต่อยอดบทเรียนใหม่ในอนาคต โดยเริ่มจาก AI Video และ Prompt Engineering
           </p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -157,10 +157,10 @@ export default function AcademyHubPage() {
         <h2 className="mt-2 font-display text-2xl font-semibold text-navy-900">ลำดับต่อยอดที่แนะนำ</h2>
         <div className="mt-5 grid gap-4 md:grid-cols-4">
           {[
-            "Prompt Engineering",
             "RAG & Knowledge Base",
             "OSINT Toolkit",
             "War Room Dashboard",
+            "Executive Brief System",
           ].map((item, index) => (
             <div key={item} className="rounded-2xl border border-navy-900/10 bg-ivory-50 p-5 text-center shadow-card">
               <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-xl bg-navy-900 text-sm font-bold text-ivory-50">
