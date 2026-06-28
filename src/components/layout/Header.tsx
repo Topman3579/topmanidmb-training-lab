@@ -9,6 +9,7 @@ const NAV = [
   { href: "/academy/", label: "AI Academy" },
   { href: "/prompt-engineering/", label: "Prompt" },
   { href: "/rag-knowledge-base/", label: "RAG" },
+  { href: "/osint-toolkit/", label: "OSINT" },
   { href: "/ai-video/", label: "AI Video" },
   { href: "/3d-evidence-room/", label: "3D Evidence Room" },
   { href: "/progress/", label: "ความคืบหน้า" },
