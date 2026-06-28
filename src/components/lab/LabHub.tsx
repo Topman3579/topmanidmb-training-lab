@@ -42,6 +42,21 @@ export function LabHub() {
         </div>
       </section>
 
+      <section className="lab-card overflow-hidden border-gold-400/30 bg-gradient-to-r from-brand-50 to-paper p-6 sm:p-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="lab-kicker">TOPMAN AI Academy</p>
+            <h2 className="mt-1 font-display text-2xl font-semibold text-navy-900">AI Video Guide 2026</h2>
+            <p className="mt-2 max-w-2xl text-sm text-navy-700">
+              คู่มือเริ่มต้นทำ Image-to-Video จากภาพนิ่งด้วย Seedance / Grok Imagine Video พร้อม Workflow, Prompt Template และ Guardrails สำหรับงานจริง
+            </p>
+          </div>
+          <Link href="/ai-video/" className="lab-btn-primary shrink-0 text-center">
+            เปิดคู่มือ AI Video →
+          </Link>
+        </div>
+      </section>
+
       <section className="lab-card overflow-hidden border-gold-400/30 bg-gradient-to-r from-ivory-50 to-paper p-6 sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
