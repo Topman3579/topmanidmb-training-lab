@@ -1,6 +1,8 @@
 # TOPMANIDMB Training Lab
 
-Local prototype for an interactive AI training lab and mini-game for police investigation learning.
+Public training prototype for an interactive AI training lab and mini-game for police investigation learning.
+
+Live: https://lab.topmanidmb.studio
 
 **Mock data only** — no real cases, names, IDs, or production connections.
 
@@ -10,7 +12,7 @@ Local prototype for an interactive AI training lab and mini-game for police inve
 - No `.env`, secrets, tokens, or credentials
 - No imports from TOPMANIDMB production projects or case databases
 - Progress stored in browser `localStorage` only
-- Future domain reserved: `lab.topmanidmb.studio` — **not deployed in this prototype**
+- Public training deployment at `lab.topmanidmb.studio` (mock data only)
 
 ## Tech stack
 
@@ -22,7 +24,7 @@ Local prototype for an interactive AI training lab and mini-game for police inve
 ## Quick start
 
 ```bash
-cd /Users/mac/topmanidmb-training-lab
+cd /Users/topmanidmb/projects/topmanidmb-training-lab
 npm install
 npm run dev      # http://localhost:3000
 npm run build    # static site → out/
@@ -39,7 +41,8 @@ npm run lint
 | `/play/[slug]/` | 4-phase game session |
 | `/debrief/[slug]/` | Score + feedback |
 | `/progress/` | Local progress dashboard |
-| `/about/` | Policies + future domain note |
+| `/3d-evidence-room/` | Interactive mock evidence room |
+| `/about/` | Policies + deployment note |
 
 ## Scenarios (mock)
 

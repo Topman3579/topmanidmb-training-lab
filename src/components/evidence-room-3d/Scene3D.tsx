@@ -20,15 +20,18 @@ export function Scene3D({ selectedId, completedIds, onSelect }: Scene3DProps) {
         style={{ width: "100%", height: "100%" }}
       >
         <color attach="background" args={["#091327"]} />
-        <ambientLight intensity={0.55} />
+        <fog attach="fog" args={["#091327", 7, 15]} />
+        <hemisphereLight args={["#c7ddff", "#071022", 0.75]} />
+        <ambientLight intensity={0.35} />
         <directionalLight
           position={[4, 6, 3]}
-          intensity={1.1}
+          intensity={1.35}
           castShadow
-          shadow-mapSize-width={1024}
-          shadow-mapSize-height={1024}
+          shadow-mapSize-width={2048}
+          shadow-mapSize-height={2048}
         />
-        <pointLight position={[-2, 3, 2]} intensity={0.4} color="#93c5fd" />
+        <spotLight position={[-3.8, 4.5, 1.8]} angle={0.55} penumbra={0.7} intensity={1.2} color="#5bb8f5" castShadow />
+        <pointLight position={[3.2, 2.8, -1.8]} intensity={0.85} color="#ffcb2d" distance={7} />
 
         <RoomEnvironment />
         <EvidenceObjects

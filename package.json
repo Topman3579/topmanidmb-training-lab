@@ -1,8 +1,8 @@
 {
   "name": "topmanidmb-training-lab",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "TOPMANIDMB Training Lab — mock investigation training prototype (local only)",
+  "description": "TOPMANIDMB Training Lab — public mock investigation training prototype",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

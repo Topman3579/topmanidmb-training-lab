@@ -34,6 +34,8 @@ function ObjectMesh({
       color={color}
       emissive={emissive}
       emissiveIntensity={emissiveIntensity}
+      roughness={0.42}
+      metalness={type === "laptop" || type === "phone" ? 0.55 : 0.08}
     />
   );
 
@@ -68,15 +70,15 @@ function ObjectMesh({
           </mesh>
           <mesh position={[0, 0.14, -0.1]} rotation={[-0.3, 0, 0]} castShadow>
             <boxGeometry args={[0.38, 0.22, 0.02]} />
-            <meshStandardMaterial color="#374151" emissive={emissive} emissiveIntensity={emissiveIntensity} />
+            <meshStandardMaterial color="#10283f" emissive={selected ? "#5bb8f5" : "#153f62"} emissiveIntensity={selected ? 0.8 : 0.35} metalness={0.5} roughness={0.24} />
           </mesh>
         </group>
       )}
       {type === "phone" && (
-        <mesh castShadow rotation={[0, 0.4, 0]}>
-          <boxGeometry args={[0.08, 0.14, 0.02]} />
-          {mat}
-        </mesh>
+        <group rotation={[0, 0.4, 0]}>
+          <mesh castShadow><boxGeometry args={[0.09, 0.15, 0.022]} />{mat}</mesh>
+          <mesh position={[0, 0, 0.013]}><boxGeometry args={[0.07, 0.12, 0.004]} /><meshStandardMaterial color="#0b2034" emissive="#5bb8f5" emissiveIntensity={0.45} /></mesh>
+        </group>
       )}
       {type === "receipt_stack" && (
         <group>
