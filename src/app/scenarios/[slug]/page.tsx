@@ -5,15 +5,16 @@ import { getAllScenarioIds, getScenarioById } from "@/data/scenarios";
 import { Badge } from "@/components/ui/Badge";
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
   return getAllScenarioIds().map((slug) => ({ slug }));
 }
 
-export default function ScenarioBriefingPage({ params }: PageProps) {
-  const scenario = getScenarioById(params.slug);
+export default async function ScenarioBriefingPage({ params }: PageProps) {
+  const { slug } = await params;
+  const scenario = getScenarioById(slug);
   if (!scenario) notFound();
 
   const diff = DIFFICULTY_LABELS[scenario.difficulty];
