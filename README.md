@@ -43,6 +43,8 @@ npm run lint
 | `/progress/` | Local progress dashboard |
 | `/3d-evidence-room/` | Interactive mock evidence room |
 | `/about/` | Policies + deployment note |
+| `/report/` | Sanitized lab reports by date |
+| `/report/25690830/fleet-llm/` | Fleet LLM fitness report (public-safe) |
 
 ## Scenarios (mock)
 

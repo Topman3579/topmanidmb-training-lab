@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>รายงานกอง AI · 25690830 · fleet-llm | TOPMANIDMB Lab</title>
+<meta name="description" content="รายงานแล็บสาธารณะ: สุขภาพ 4 เครื่องหลักและผลทดสอบการใช้งาน LLM 100 สถานการณ์ — ไม่มีข้อมูลคดี">
+<link rel="canonical" href="https://lab.topmanidmb.studio/report/25690830/fleet-llm/">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Noto+Serif+Thai:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f4f1ea; --paper-2:#efeadf; --card:#fff;
+  --ink:#1b2840; --ink-2:#3a4257; --muted:#928a78;
+  --navy:#1f3a5f; --gold:#a6822f; --ok:#5c8a6a; --warn:#bd8b2c;
+  --line:rgba(27,40,64,.10);
+  --serif:'Noto Serif Thai','Fraunces',Georgia,serif;
+  --serif-lat:'Fraunces','Noto Serif Thai',serif;
+  --sans:'IBM Plex Sans Thai',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:28px 22px 72px}
+.brand{display:flex;align-items:center;gap:12px;padding-bottom:18px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.mark{width:42px;height:42px;border-radius:10px;background:#0a1426;color:#ffcb2d;display:grid;place-items:center;font-family:var(--serif-lat);font-weight:600}
+.wordmark{font-family:var(--serif-lat);font-weight:600;color:var(--navy);letter-spacing:.04em}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;color:var(--muted);margin-top:4px}
+.kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin:24px 0 8px}
+h1{font-family:var(--serif);color:var(--navy);font-size:clamp(26px,4vw,40px);line-height:1.25;margin:0 0 10px}
+.lead{color:var(--ink-2);max-width:44em}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 28px}
+.pill{font-family:var(--mono);font-size:11.5px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;color:var(--muted)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+@media(max-width:800px){.kpis{grid-template-columns:1fr 1fr}}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;border-top:3px solid var(--gold)}
+.kpi .n{font-family:var(--serif-lat);font-size:30px;font-weight:600;color:var(--navy)}
+.kpi .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+h2{font-family:var(--serif);color:var(--navy);font-size:22px;margin:32px 0 8px}
+.rule{border:0;border-top:1px solid var(--line);margin:0 0 14px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:auto;margin:0 0 16px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:left;padding:11px 12px;background:var(--paper-2)}
+td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+td.n{font-family:var(--serif-lat);color:var(--navy);font-weight:600}
+.ok{color:var(--ok);font-weight:600}
+.warn{color:var(--warn);font-weight:600}
+.note{background:var(--paper-2);border-left:3px solid var(--gold);padding:14px 16px;border-radius:0 12px 12px 0}
+.note ul{margin:6px 0 0;padding-left:18px}
+.foot{margin-top:36px;padding-top:14px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+a{color:var(--navy)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="brand">
+    <div class="mark">18</div>
+    <div>
+      <div class="wordmark">TOPMANIDMB Lab</div>
+      <div class="tag">TRAINING · STUDIO · SANITIZED</div>
+    </div>
+  </header>
+
+  <p class="kicker">report / 25690830 / fleet-llm</p>
+  <h1>กองเครื่อง 4 โหนดกับ LLM ที่มีอยู่</h1>
+  <p class="lead">รายงานแล็บสาธารณะ 30 ส.ค. 2569 — วัดว่าโมเดลที่ติดตั้งแล้วตอบงานได้จริง 100 สถานการณ์ กระจายตามบทบาทเครื่อง ไม่ใช่คะแนนความฉลาด และไม่มีข้อมูลคดี</p>
+  <div class="meta">
+    <span class="pill">เลน .studio · พัฒนากอง</span>
+    <span class="pill">ฉบับสะอาด · ไม่มีที่อยูภายใน</span>
+    <span class="pill"><a href="/report/">สารบัญรายงาน</a></span>
+  </div>
+
+  <div class="kpis">
+    <article class="kpi"><div class="n">4</div><div class="l">เครื่องหลัก</div></article>
+    <article class="kpi"><div class="n">100</div><div class="l">สถานการณ์ทดสอบ</div></article>
+    <article class="kpi"><div class="n">92</div><div class="l">ผ่านเกณฑ์ดิบ</div></article>
+    <article class="kpi"><div class="n">95</div><div class="l">หลังตัดเกณฑ์เท็จ</div></article>
+  </div>
+
+  <h2>บทบาทเครื่อง</h2>
+  <hr class="rule">
+  <div class="panel">
+    <table>
+      <thead><tr><th>ชื่อเล่น</th><th>ฮาร์ดแวร์</th><th>บทบาท</th><th>ใช้เมื่อ</th></tr></thead>
+      <tbody>
+        <tr><td class="n">Rose</td><td>โน้ตบุ๊ก Apple Silicon ระดับสูง · หน่วยความจำรวมขนาดใหญ่</td><td>copilot เดินทาง</td><td>งานสั้น ห้ามเป็นเซิร์ฟทั้งวัน</td></tr>
+        <tr><td class="n">Travis</td><td>เดสก์ท็อป Apple Silicon ระดับสูง · ฮับประจำ</td><td>งาน local ทั้งวัน</td><td>แชท / ค้นเอกสาร / โมเดลขนาดกลาง</td></tr>
+        <tr><td class="n">Workstation</td><td>เวิร์กสเตชันหลายคอร์ · การ์ดคำนวณคู่ + การ์ดแสดงผลแยก</td><td>ความรู้ / ถอดเอกสาร</td><td>งานคำนวณภาพเอกสาร · ไม่ใช่งานวิดีโอ</td></tr>
+        <tr><td class="n">GPU Lab</td><td>เวิร์กสเตชันหลายคอร์ · การ์ดคำนวณคู่ในห้องแล็บ</td><td>โมเดลใหญ่ + สื่อ</td><td>งานคิดยาว / คิวสื่อ — คนละคิวกัน</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>ผลทดสอบ 100 สถานการณ์</h2>
+  <hr class="rule">
+  <div class="panel">
+    <table>
+      <thead><tr><th>โหนด</th><th>จำนวนข้อ</th><th>ผ่านดิบ</th><th>ข้อสังเกต</th></tr></thead>
+      <tbody>
+        <tr><td class="n">Rose</td><td>20</td><td>19/20</td><td>ข้อที่หักเป็นคำตอบภาษาอังกฤษที่ถูกโจทย์ — เกณฑ์ภาษาเข้มเกินไป</td></tr>
+        <tr><td class="n">Travis</td><td>30</td><td>23/30</td><td>โมเดลหลักใช้ได้ · บริการเสริมบนฮับเรียกข้ามเครื่องไม่ได้ (ผูกเครื่องนั้น)</td></tr>
+        <tr><td class="n">GPU Lab</td><td>35</td><td class="ok">35/35</td><td>นิ่งและเร็วที่สุดในรอบนี้</td></tr>
+        <tr><td class="n">Workstation</td><td>15</td><td class="ok">15/15</td><td>ครั้งแรกช้าเพราะโหลดโมเดลใหญ่ แล้วคงที่</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>ปัญหา · วิเคราะห์ · แนะนำ</h2>
+  <hr class="rule">
+  <div class="panel">
+    <table>
+      <thead><tr><th>เรื่อง</th><th>วิเคราะห์</th><th>แนะนำ</th></tr></thead>
+      <tbody>
+        <tr><td>บริการเสริมบนฮับ</td><td>โมเดลไม่พัง — ฟังเฉพาะเครื่องนั้น จึงยิงจากโน้ตบุ๊กไม่ถึง</td><td>ใช้งานบนฮับโดยตรง ไม่ต้องเปิดสู่เน็ตสาธารณะ</td></tr>
+        <tr><td>เกณฑ์ภาษาไทย 3 ข้อ</td><td>โจทย์ขอคำอังกฤษ/ชื่อโมเดล แต่เกณฑ์บังคับมีอักษรไทย</td><td>อย่านับ 92 เป็นคะแนนความฉลาด</td></tr>
+        <tr><td>คลัสเตอร์ GPU</td><td>ผ่านครบแม้โจทย์วิเคราะห์ยาว</td><td>งานคิดยาวส่งคลัสเตอร์แล็บ</td></tr>
+        <tr><td>เวิร์กสเตชัน</td><td>อุ่นโมเดลครั้งแรกมีต้นทุนเวลา</td><td>อุ่นก่อนคิว · อย่าสลับโมเดลใหญ่กลางคิว</td></tr>
+        <tr><td>ขอบเขตรอบนี้</td><td>วัดว่า «ตอบได้ไหม» ไม่ใช่จัดอันดับคุณภาพ</td><td>ถ้าจะจัดอันดับ ต้องวัดหลายรอบ คนละตระกูลโมเดล</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <strong>ตารางตัดสิน</strong>
+    <ul>
+      <li>ต้องทำเลย: ไม่มี — สี่โหนดตอบงานได้</li>
+      <li>รอได้: เปิดบริการเสริมบนฮับให้เรียกข้ามเครื่อง ถ้าจำเป็นต่อเวิร์กโฟลว์</li>
+      <li>ไม่ควรทำ: ติดตั้งโมเดลเพิ่มในรอบนี้ · เอาตัวเลข 92 ไปอ้างว่าโมเดลไหนฉลาดกว่า</li>
+      <li>ทางที่ถูกกว่า: งานสั้นที่โน้ตบุ๊ก/ฮับ · งานยาวที่คลัสเตอร์แล็บ · งานถอดเอกสารที่เวิร์กสเตชัน</li>
+    </ul>
+  </div>
+
+  <p class="lead" style="margin-top:28px">รายงานนี้ตัดที่อยูภายใน ชุดคำสั่ง และข้อมูลปฏิบัติการออกแล้ว ฉบับปฏิบัติการอยู่เลนภายในของกอง ไม่เผยบนเลน `.studio`</p>
+
+  <footer class="foot">
+    <span>TOPMANIDMB Lab · 25690830 · fleet-llm</span>
+    <span><a href="/report/">สารบัญรายงาน</a> · <a href="/">กลับแล็บ</a></span>
+  </footer>
+</div>
+</body>
+</html>
