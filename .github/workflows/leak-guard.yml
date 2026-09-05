@@ -1,8 +1,15 @@
 name: leak-guard
-# Backstop scan for PRIVATE repos — fail (red X + email) if a case identifier / Thai ID /
+# Backstop scan for this PUBLIC repo — fail (red X + email) if a case identifier / Thai ID /
 # secret / internal-network pattern is committed. Primary guard = local pre-push hook; this is
 # the server-side net for pushes from other nodes or the web editor.
 # Generic patterns only (no real codenames). Skips minified/vendor assets to avoid false positives.
+#
+# Two tiers (5 Sep 2569 — the guard had been red since 29 Aug, i.e. zero signal):
+#   secret_patterns   → every tracked file, no exceptions.
+#   topology_patterns → case-id / Thai-ID / internal IP / *.ts.net. Skipped only for
+#     public/report/2569XXXX/** — sanitized report artifacts whose slug is a date by convention
+#     (/report/256XXXXXXXX/<slug>) — plus the /report/ listing page and lines that merely link to one.
+#   Anything else that carries topology or a case id still fails the build.
 on:
   push:
     branches: [main]
@@ -17,9 +24,7 @@ jobs:
       - name: Scan tracked files for sensitive patterns
         run: |
           set -uo pipefail
-          patterns=(
-            '2569[0-9]{4}'
-            '[0-9]{13}'
+          secret_patterns=(
             '-----BEGIN [A-Z ]*PRIVATE KEY-----'
             'AGE-SECRET-KEY-1[A-Z0-9]+'
             '(ghp|gho|ghu|ghs)_[A-Za-z0-9]{20,}'
@@ -28,11 +33,16 @@ jobs:
             'sk-[A-Za-z0-9]{32,}'
             'xox[bp]-[A-Za-z0-9-]{10,}'
             'AKIA[A-Z0-9]{16}'
+          )
+          topology_patterns=(
+            '2569[0-9]{4}'
+            '[0-9]{13}'
             '100\.(6[4-9]|[7-9][0-9]|1[0-1][0-9]|12[0-7])\.[0-9]{1,3}\.[0-9]{1,3}'
             '10\.10\.10\.[0-9]{1,3}'
             '192\.168\.[0-9]{1,3}\.[0-9]{1,3}'
             '[a-z0-9]+\.ts\.net'
           )
+          inventory_allow=()   # public repo: no inventory exemptions
           hits=0
           while IFS= read -r f; do
             [ -f "$f" ] || continue
@@ -40,8 +50,25 @@ jobs:
               .github/workflows/leak-guard.yml) continue ;;
               *.min.js|*.min.css|*/vendor/*|*/libs/*) continue ;;
             esac
-            for p in "${patterns[@]}"; do
+            for p in "${secret_patterns[@]}"; do
               if grep -nEI "$p" "$f" >/dev/null 2>&1; then
+                echo "::error file=$f::secret pattern matched: /$p/"
+                hits=$((hits+1))
+              fi
+            done
+            skip_topology=0
+            for a in ${inventory_allow[@]+"${inventory_allow[@]}"}; do
+              [ "$f" = "$a" ] && skip_topology=1
+            done
+            case "$f" in public/report/2569[0-9][0-9][0-9][0-9]/*|public/report/index.html) skip_topology=1 ;; esac
+            [ "$skip_topology" = 1 ] && continue
+            for p in "${topology_patterns[@]}"; do
+              if [ "$p" = '2569[0-9]{4}' ]; then
+                m=$(grep -nEI "$p" "$f" 2>/dev/null | grep -vE 'report/2569[0-9]{4}' || true)
+              else
+                m=$(grep -nEI "$p" "$f" 2>/dev/null || true)
+              fi
+              if [ -n "$m" ]; then
                 echo "::error file=$f::sensitive pattern matched: /$p/"
                 hits=$((hits+1))
               fi
