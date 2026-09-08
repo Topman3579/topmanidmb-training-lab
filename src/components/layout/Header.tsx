@@ -7,6 +7,7 @@ import { APP_NAME } from "@/lib/constants";
 const NAV = [
   { href: "/", label: "ห้องทดลอง" },
   { href: "/academy/", label: "AI Academy" },
+  { href: "/ai-101/", label: "AI 101" },
   { href: "/prompt-engineering/", label: "Prompt" },
   { href: "/rag-knowledge-base/", label: "RAG" },
   { href: "/osint-toolkit/", label: "OSINT" },

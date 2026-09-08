@@ -48,12 +48,17 @@ export function LabHub() {
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">TOPMAN AI Academy Hub</p>
             <h2 className="mt-1 font-display text-2xl font-semibold text-ivory-50">ศูนย์กลางบทเรียน AI และ Workflow</h2>
             <p className="mt-2 max-w-2xl text-sm text-ivory-100">
-              รวมหมวด AI Video, Prompt Engineering, RAG, OSINT, Dashboard, War Room และมาตรฐาน ChatGPT → GitHub → Vercel
+              เริ่มจาก บท 0 · AI สำหรับตำรวจ 101 แล้วต่อด้วย Prompt Engineering, RAG, OSINT, AI Video, Dashboard และ Executive Brief
             </p>
           </div>
-          <Link href="/academy/" className="inline-flex shrink-0 items-center justify-center rounded-xl bg-gold px-5 py-2.5 text-sm font-semibold text-navy-900 transition hover:bg-gold-light">
-            เปิด Academy Hub →
-          </Link>
+          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+            <Link href="/ai-101/" className="inline-flex items-center justify-center rounded-xl bg-gold px-5 py-2.5 text-sm font-semibold text-navy-900 transition hover:bg-gold-light">
+              เริ่มบท 0 · AI 101 →
+            </Link>
+            <Link href="/academy/" className="inline-flex items-center justify-center rounded-xl border border-ivory-50/40 px-5 py-2.5 text-sm font-semibold text-ivory-50 transition hover:bg-ivory-50/10">
+              เปิด Academy Hub
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -8,6 +8,12 @@ export const metadata: Metadata = {
 
 const tracks = [
   {
+    title: "บท 0 · AI สำหรับตำรวจ 101",
+    href: "/ai-101/",
+    status: "เริ่มที่นี่",
+    description: "AI คืออะไร ใช้ทำอะไรได้/ห้ามทำอะไร Hallucination ข้อมูลส่วนบุคคล และหลัก Verification First — พร้อมควิซ 10 ข้อ",
+  },
+  {
     title: "AI Video",
     href: "/ai-video/",
     status: "เปิดใช้งานแล้ว",
