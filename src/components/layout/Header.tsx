@@ -14,6 +14,7 @@ const NAV = [
   { href: "/ai-video/", label: "AI Video" },
   { href: "/3d-evidence-room/", label: "3D Evidence Room" },
   { href: "/progress/", label: "ความคืบหน้า" },
+  { href: "/certificate/", label: "ใบประกาศ" },
   { href: "/about/", label: "เกี่ยวกับ" },
 ];
 

@@ -42,6 +42,8 @@ npm run lint
 | `/debrief/[slug]/` | Score + feedback |
 | `/progress/` | Local progress dashboard |
 | `/3d-evidence-room/` | Interactive mock evidence room |
+| `/ai-101/` | บท 0 · AI สำหรับตำรวจ 101 + ควิซ |
+| `/certificate/` | ใบประกาศผ่านหลักสูตร (local-only) |
 | `/about/` | Policies + deployment note |
 | `/report/` | Sanitized lab reports by date |
 | `/report/25690830/fleet-llm/` | Fleet LLM fitness report (public-safe) |
@@ -51,6 +53,7 @@ npm run lint
 1. `lab-2026-001` — Missing file in mock evidence room (beginner)
 2. `lab-2026-002` — Simulated transfers at Demo Logistics Co. (intermediate)
 3. `lab-2026-003` — Missing shipment at Central Mock Warehouse (advanced)
+4. `lab-2026-004` — Online investment scam & mule accounts (intermediate, cyber)
 
 ## Repository
 

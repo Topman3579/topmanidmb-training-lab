@@ -94,7 +94,7 @@ export function LabHub() {
 
       <section>
         <h2 className="mb-4 font-display text-xl font-semibold text-navy-900">สถานการณ์จำลอง (โหมด 2D)</h2>
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {scenarioSummaries.map((scenario) => (
             <ScenarioCard
               key={scenario.id}

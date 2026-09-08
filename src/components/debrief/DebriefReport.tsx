@@ -56,6 +56,9 @@ export function DebriefReport({ scenario, result }: DebriefReportProps) {
         <Link href="/progress/" className="lab-btn-secondary">
           ดูความคืบหน้า
         </Link>
+        <Link href="/certificate/" className="lab-btn-secondary">
+          🎓 ใบประกาศ
+        </Link>
       </div>
     </div>
   );

@@ -27,7 +27,7 @@ export function ProgressDashboard() {
         </p>
       </section>
 
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {scenarioSummaries.map((s) => {
           const best = getBestScore(s.id);
           return (
@@ -59,9 +59,14 @@ export function ProgressDashboard() {
         </section>
       )}
 
-      <button type="button" onClick={handleClear} className="lab-btn-secondary">
-        ล้างความคืบหน้าในเครื่องนี้
-      </button>
+      <div className="flex flex-wrap gap-3">
+        <Link href="/certificate/" className="lab-btn-primary">
+          🎓 ใบประกาศผ่านหลักสูตร
+        </Link>
+        <button type="button" onClick={handleClear} className="lab-btn-secondary">
+          ล้างความคืบหน้าในเครื่องนี้
+        </button>
+      </div>
     </div>
   );
 }

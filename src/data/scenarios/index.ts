@@ -1,9 +1,10 @@
 import { lab2026001 } from "@/data/scenarios/lab-2026-001";
 import { lab2026002 } from "@/data/scenarios/lab-2026-002";
 import { lab2026003 } from "@/data/scenarios/lab-2026-003";
+import { lab2026004 } from "@/data/scenarios/lab-2026-004";
 import type { Scenario, ScenarioSummary } from "@/lib/types";
 
-export const scenarios: Scenario[] = [lab2026001, lab2026002, lab2026003];
+export const scenarios: Scenario[] = [lab2026001, lab2026002, lab2026003, lab2026004];
 
 export const scenarioSummaries: ScenarioSummary[] = scenarios.map((s) => ({
   id: s.id,
