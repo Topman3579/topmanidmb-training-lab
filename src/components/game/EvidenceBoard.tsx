@@ -2,11 +2,11 @@
 
 import type { EvidenceClass, EvidenceItem } from "@/lib/types";
 
-const CLASSES: { key: EvidenceClass; label: string }[] = [
-  { key: "observable", label: "สังเกตได้" },
-  { key: "derived", label: "สรุปจากหลักฐาน" },
-  { key: "inferred", label: "อนุมาน" },
-  { key: "noise", label: "สัญญาณรบกวน" },
+const CLASSES: { key: EvidenceClass; label: string; help: string }[] = [
+  { key: "observable", label: "สังเกตได้", help: "เห็น/ตรวจได้โดยตรง เช่น ภาพกล้อง บันทึกระบบ" },
+  { key: "derived", label: "สรุปจากหลักฐาน", help: "อ่านจากหลักฐานแล้วสรุป ยังตรวจย้อนได้" },
+  { key: "inferred", label: "อนุมาน", help: "คาดเดาจากประสบการณ์ ยังไม่มีหลักฐานรองรับ" },
+  { key: "noise", label: "สัญญาณรบกวน", help: "ข่าวลือ ความเห็น โพสต์ที่ตรวจที่มาไม่ได้" },
 ];
 
 interface EvidenceBoardProps {
@@ -18,6 +18,13 @@ interface EvidenceBoardProps {
 export function EvidenceBoard({ items, answers, onAnswer }: EvidenceBoardProps) {
   return (
     <div className="space-y-4">
+      <div className="lab-card grid gap-2 p-4 text-xs text-navy-700 sm:grid-cols-2">
+        {CLASSES.map((c) => (
+          <p key={c.key}>
+            <strong className="text-navy-900">{c.label}</strong> — {c.help}
+          </p>
+        ))}
+      </div>
       {items.map((item) => (
         <div key={item.id} className="lab-card p-4">
           <p className="font-medium text-navy-900">{item.label}</p>

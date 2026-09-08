@@ -52,9 +52,10 @@ export function scoreRedFlags(
     return seg && !seg.hasFlag;
   }).length;
 
-  const raw = hits / flagged.length;
-  const penalty = falsePositives * 0.15;
-  return Math.max(0, Math.round((raw - penalty) * 100));
+  // hits ลบ false positive เต็มน้ำหนัก — กัน "คลิกทุกประโยค" แล้วยังได้คะแนนสูง
+  // (เดิมหักแค่ 15% ต่อครั้ง: คลิกหมด 4 ข้อยังได้ 85)
+  const raw = (hits - falsePositives) / flagged.length;
+  return Math.max(0, Math.round(raw * 100));
 }
 
 export function scoreDecision(options: DecisionOption[], selectedId: string | null): number {
@@ -70,10 +71,9 @@ export function buildPhaseScores(parts: Partial<PhaseScores>): PhaseScores {
   const timeline = parts.timeline ?? 0;
   const redflag = parts.redflag ?? 0;
   const decision = parts.decision ?? 0;
-  const values = [evidence, timeline, redflag, decision].filter((v) => v > 0);
-  const total = values.length
-    ? Math.round(values.reduce((sum, v) => sum + v, 0) / values.length)
-    : 0;
+  // เฉลี่ยครบ 4 มิติเสมอ (น้ำหนัก 25% ตาม rubric) — เดิมตัดมิติที่ได้ 0 ทิ้ง
+  // ทำให้เรียง timeline ผิดหมด (0) แล้วคะแนนรวมกลับสูงขึ้น
+  const total = Math.round((evidence + timeline + redflag + decision) / 4);
 
   return { evidence, timeline, redflag, decision, total };
 }

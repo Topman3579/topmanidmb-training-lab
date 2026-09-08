@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { DecisionBranch } from "@/components/game/DecisionBranch";
 import { EvidenceBoard } from "@/components/game/EvidenceBoard";
@@ -32,17 +32,32 @@ interface GameSessionProps {
 
 function shuffleTimeline(phase: GamePhase): string[] {
   const events = phase.payload as TimelineEvent[];
-  return [...events].sort(() => Math.random() - 0.5).map((e) => e.id);
+  const ids = events.map((e) => e.id);
+  // Fisher–Yates + กันสุ่มได้ลำดับที่ถูกอยู่แล้ว
+  const target = [...events].sort((a, b) => a.correctOrder - b.correctOrder).map((e) => e.id);
+  for (let attempt = 0; attempt < 10; attempt += 1) {
+    for (let i = ids.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [ids[i], ids[j]] = [ids[j], ids[i]];
+    }
+    if (ids.some((id, i) => id !== target[i])) break;
+  }
+  return ids;
 }
 
 export function GameSession({ scenario }: GameSessionProps) {
   const router = useRouter();
   const [phaseIndex, setPhaseIndex] = useState(0);
   const [evidenceAnswers, setEvidenceAnswers] = useState<Record<string, EvidenceClass | null>>({});
+  // เริ่มด้วยลำดับคงที่ (ตาม payload) แล้วค่อยสุ่มบน client — กัน hydration mismatch จาก Math.random ตอน SSR/static export
   const [timelineOrder, setTimelineOrder] = useState<string[]>(() => {
     const tl = scenario.phases.find((p) => p.type === "timeline");
-    return tl ? shuffleTimeline(tl) : [];
+    return tl ? (tl.payload as TimelineEvent[]).map((e) => e.id) : [];
   });
+  useEffect(() => {
+    const tl = scenario.phases.find((p) => p.type === "timeline");
+    if (tl) setTimelineOrder(shuffleTimeline(tl));
+  }, [scenario]);
   const [redFlagSelected, setRedFlagSelected] = useState<Set<string>>(new Set());
   const [decisionId, setDecisionId] = useState<string | null>(null);
   const [phaseScores, setPhaseScores] = useState<Record<string, number>>({});
@@ -85,6 +100,12 @@ export function GameSession({ scenario }: GameSessionProps) {
         completedAt: new Date().toISOString(),
         scores: built,
         passed: isPassed(built.total),
+        answers: {
+          evidence: evidenceAnswers,
+          timelineOrder,
+          redFlagSelected: Array.from(redFlagSelected),
+          decisionId,
+        },
       };
       saveSession(result);
       router.push(`/debrief/${scenario.id}/?score=${built.total}`);

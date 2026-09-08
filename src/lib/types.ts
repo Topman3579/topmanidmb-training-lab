@@ -62,11 +62,20 @@ export interface PhaseScores {
   total: number;
 }
 
+export interface SessionAnswers {
+  evidence: Record<string, EvidenceClass | null>;
+  timelineOrder: string[];
+  redFlagSelected: string[];
+  decisionId: string | null;
+}
+
 export interface SessionResult {
   scenarioId: string;
   completedAt: string;
   scores: PhaseScores;
   passed: boolean;
+  /** คำตอบรายข้อ — ใช้ทำ Debrief เฉลย (session เก่าอาจไม่มี) */
+  answers?: SessionAnswers;
 }
 
 export interface ProgressStore {

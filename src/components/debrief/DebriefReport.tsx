@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnswerReview } from "@/components/debrief/AnswerReview";
 import { ScoreBreakdown } from "@/components/debrief/ScoreBreakdown";
 import { PASS_THRESHOLD } from "@/lib/constants";
 import type { Scenario, SessionResult } from "@/lib/types";
@@ -24,6 +25,17 @@ export function DebriefReport({ scenario, result }: DebriefReportProps) {
       </section>
 
       <ScoreBreakdown scores={result.scores} />
+
+      <AnswerReview scenario={scenario} answers={result.answers} />
+
+      <section className="lab-card p-5">
+        <h2 className="font-display text-lg font-semibold text-navy-900">วัตถุประสงค์การเรียนรู้ของภารกิจนี้</h2>
+        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-navy-700">
+          {scenario.learningObjectives.map((obj) => (
+            <li key={obj}>{obj}</li>
+          ))}
+        </ul>
+      </section>
 
       <section className="lab-card p-5">
         <h2 className="font-display text-lg font-semibold text-navy-900">สิ่งที่ผู้ฝึกอบรมควรจด</h2>
