@@ -62,6 +62,21 @@ export function LabHub() {
         </div>
       </section>
 
+      <section className="lab-card overflow-hidden border-gold-400/30 bg-gradient-to-r from-navy-900 to-navy-800 p-6 text-ivory-50 sm:p-8">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold-400">บทเรียนใหม่ · AI Video</p>
+            <h2 className="mt-1 font-display text-2xl font-semibold text-ivory-50">คลิปว้าว 30 วิ บน Google Flow</h2>
+            <p className="mt-2 max-w-2xl text-sm text-ivory-100">
+              6 บท + ควิซ + คลิปตัวอย่างจริง · สูตร Omni 3×10 วิ ต่อด้วยเฟรมท้าย · ไม่ใส่หน้าคน
+            </p>
+          </div>
+          <Link href="/ai-video/wow-30s/" className="inline-flex shrink-0 items-center justify-center rounded-xl bg-gold px-5 py-2.5 text-sm font-semibold text-navy-900 transition hover:bg-gold-light">
+            เริ่มบทเรียน 30 วิ →
+          </Link>
+        </div>
+      </section>
+
       <section className="lab-card overflow-hidden border-gold-400/30 bg-gradient-to-r from-brand-50 to-paper p-6 sm:p-8">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>

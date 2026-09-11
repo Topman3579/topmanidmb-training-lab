@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "AI Video Guide 2026",
@@ -135,6 +136,12 @@ export default function AiVideoGuidePage() {
               <span className="lab-mission-badge">Beginner Friendly 2026</span>
               <span className="lab-mission-badge">Prompt First</span>
             </div>
+            <Link
+              href="/ai-video/wow-30s/"
+              className="mt-6 inline-flex rounded-xl bg-navy-900 px-5 py-2.5 text-sm font-semibold text-ivory-50 transition hover:bg-navy-800"
+            >
+              บทเรียนคลิปว้าว 30 วิ →
+            </Link>
           </div>
           <div className="border-t border-navy-900/10 bg-gradient-to-br from-navy-900 to-navy-800 p-7 text-ivory-50 lg:border-l lg:border-t-0 sm:p-10">
             <p className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-400">Quick Decision</p>

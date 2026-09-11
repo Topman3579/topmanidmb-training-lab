@@ -43,6 +43,8 @@ npm run lint
 | `/progress/` | Local progress dashboard |
 | `/3d-evidence-room/` | Interactive mock evidence room |
 | `/ai-101/` | บท 0 · AI สำหรับตำรวจ 101 + ควิซ |
+| `/ai-video/` | Image-to-Video guide |
+| `/ai-video/wow-30s/` | บทเรียนคลิปว้าว 30 วิ · Google Flow Omni · 6 บท + ควิซ |
 | `/certificate/` | ใบประกาศผ่านหลักสูตร (local-only) |
 | `/about/` | Policies + deployment note |
 | `/report/` | Sanitized lab reports by date |

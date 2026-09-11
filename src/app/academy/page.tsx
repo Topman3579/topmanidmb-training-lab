@@ -14,6 +14,12 @@ const tracks = [
     description: "AI คืออะไร ใช้ทำอะไรได้/ห้ามทำอะไร Hallucination ข้อมูลส่วนบุคคล และหลัก Verification First — พร้อมควิซ 10 ข้อ",
   },
   {
+    title: "คลิปว้าว 30 วิ · Flow Omni",
+    href: "/ai-video/wow-30s/",
+    status: "บทเรียนใหม่",
+    description: "ยิงทีละ 10 วิ ต่อด้วยเฟรมท้าย รวม 30 วิ · 6 บท + ควิซ + คลิปตัวอย่าง · ไม่ใส่หน้าคน",
+  },
+  {
     title: "AI Video",
     href: "/ai-video/",
     status: "เปิดใช้งานแล้ว",
