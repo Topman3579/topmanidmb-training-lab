@@ -2,14 +2,15 @@ name: leak-guard
 # Backstop scan for this PUBLIC repo — fail (red X + email) if a case identifier / Thai ID /
 # secret / internal-network pattern is committed. Primary guard = local pre-push hook; this is
 # the server-side net for pushes from other nodes or the web editor.
-# Generic patterns only (no real codenames). Skips minified/vendor assets to avoid false positives.
+# Generic patterns only (no real codenames, no house subnets). Skips minified/vendor assets to avoid false positives.
 #
 # Two tiers (5 Sep 2569 — the guard had been red since 29 Aug, i.e. zero signal):
 #   secret_patterns   → every tracked file, no exceptions.
-#   topology_patterns → case-id / Thai-ID / internal IP / *.ts.net. Skipped only for
-#     public/report/2569XXXX/** — sanitized report artifacts whose slug is a date by convention
-#     (/report/256XXXXXXXX/<slug>) — plus the /report/ listing page and lines that merely link to one.
-#   Anything else that carries topology or a case id still fails the build.
+#   topology_patterns → case-id / Thai-ID / private IP (RFC1918 + CGNAT) / *.ts.net → every tracked
+#     file, public/report/** included. Only carve-out: report slugs are dates by convention
+#     (/report/2569XXXX/<slug>), so the case-id pattern ignores lines that link to a report and, on
+#     public/report/** only, the exact slug dates of existing report folders.
+#   Anything else that carries topology or a case id fails the build.
 on:
   push:
     branches: [main]
@@ -38,11 +39,15 @@ jobs:
             '2569[0-9]{4}'
             '[0-9]{13}'
             '100\.(6[4-9]|[7-9][0-9]|1[0-1][0-9]|12[0-7])\.[0-9]{1,3}\.[0-9]{1,3}'
-            '10\.10\.10\.[0-9]{1,3}'
+            '10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}'
+            '172\.(1[6-9]|2[0-9]|3[01])\.[0-9]{1,3}\.[0-9]{1,3}'
             '192\.168\.[0-9]{1,3}\.[0-9]{1,3}'
             '[a-z0-9]+\.ts\.net'
           )
           inventory_allow=()   # public repo: no inventory exemptions
+          # Report slugs are dates by convention (/report/2569XXXX/<slug>): collect the real ones so the
+          # case-id pattern can ignore exactly those dates on public/report/** — nothing else is skipped.
+          report_dates=$(git ls-files 'public/report/*' | sed -nE 's#^public/report/(2569[0-9]{4})/.*#\1#p' | sort -u | paste -sd'|' -)
           hits=0
           while IFS= read -r f; do
             [ -f "$f" ] || continue
@@ -60,11 +65,13 @@ jobs:
             for a in ${inventory_allow[@]+"${inventory_allow[@]}"}; do
               [ "$f" = "$a" ] && skip_topology=1
             done
-            case "$f" in public/report/2569[0-9][0-9][0-9][0-9]/*|public/report/index.html) skip_topology=1 ;; esac
             [ "$skip_topology" = 1 ] && continue
             for p in "${topology_patterns[@]}"; do
               if [ "$p" = '2569[0-9]{4}' ]; then
                 m=$(grep -nEI "$p" "$f" 2>/dev/null | grep -vE 'report/2569[0-9]{4}' || true)
+                case "$f" in public/report/*)
+                  [ -n "$report_dates" ] && m=$(printf '%s\n' "$m" | sed -E "s/(^|[^0-9])($report_dates)([^0-9]|$)/\1\3/g" | grep -E "$p" || true) ;;
+                esac
               else
                 m=$(grep -nEI "$p" "$f" 2>/dev/null || true)
               fi
