@@ -16,7 +16,7 @@ Live: https://lab.topmanidmb.studio
 
 ## Tech stack
 
-- Next.js 14 (App Router, static export)
+- Next.js 16 (App Router, static export)
 - TypeScript
 - Tailwind CSS
 - Thai fonts: Sarabun + IBM Plex Sans Thai
@@ -24,13 +24,22 @@ Live: https://lab.topmanidmb.studio
 ## Quick start
 
 ```bash
-cd /Users/topmanidmb/projects/topmanidmb-training-lab
+# after cloning this repository:
+cd topmanidmb-training-lab
 npm install
 npm run dev      # http://localhost:3000
 npm run build    # static site → out/
 npm run serve    # preview static build
-npm run lint
+npm run lint     # eslint .
 ```
+
+## Docs
+
+- [Game design](docs/GAME_DESIGN.md) — loop, phases, principles
+- [Scoring](docs/SCORING.md) — สูตรคะแนนทุกเฟส เกณฑ์ผ่าน และตัวอย่างการคำนวณ
+- [Storage](docs/STORAGE.md) — รูปแบบ progress ใน `localStorage` history cap และ badge
+- [Mock data policy](docs/MOCK_DATA_POLICY.md)
+- [Future deployment](docs/FUTURE_DEPLOY.md)
 
 ## Routes
 
