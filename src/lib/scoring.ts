@@ -63,7 +63,9 @@ export function scoreDecision(options: DecisionOption[], selectedId: string | nu
   const picked = options.find((o) => o.id === selectedId);
   if (!picked) return 0;
   if (picked.isBest) return 100;
-  return Math.max(0, 50 + picked.scoreDelta);
+  // clamp 0..100 เสมอ และ scoreDelta ที่ไม่ finite (NaN/Infinity) ให้ถือเป็น 0 — กัน data แปลก ๆ ทำคะแนนเกินขอบ
+  const delta = Number.isFinite(picked.scoreDelta) ? picked.scoreDelta : 0;
+  return Math.min(100, Math.max(0, 50 + delta));
 }
 
 export function buildPhaseScores(parts: Partial<PhaseScores>): PhaseScores {

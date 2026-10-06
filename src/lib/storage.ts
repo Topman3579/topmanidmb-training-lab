@@ -1,25 +1,46 @@
 import { STORAGE_KEY } from "@/lib/constants";
 import type { ProgressStore, SessionResult } from "@/lib/types";
 
-const EMPTY: ProgressStore = { sessions: [], badges: [] };
+// คืน object ใหม่ทุกครั้ง — ถ้าใช้ constant ร่วมกัน caller mutate ได้ แล้วเพี้ยนทั้ง module
+function emptyStore(): ProgressStore {
+  return { sessions: [], badges: [] };
+}
 
 function canUseStorage(): boolean {
-  return typeof window !== "undefined" && typeof window.localStorage !== "undefined";
+  try {
+    return typeof window !== "undefined" && typeof window.localStorage !== "undefined";
+  } catch {
+    // Safari private mode / การบล็อก storage อาจโยนตอนแตะ localStorage — ถือว่าใช้ไม่ได้
+    return false;
+  }
+}
+
+// กรอง session ที่เสียหาย (JSON ถูกแก้ / โครงสร้างเก่า) ไม่ให้ getBestScore พังทีหลัง
+function isValidSession(value: unknown): value is SessionResult {
+  if (typeof value !== "object" || value === null) return false;
+  const s = value as { scenarioId?: unknown; completedAt?: unknown; scores?: { total?: unknown } };
+  const total = s.scores?.total;
+  return (
+    typeof s.scenarioId === "string" &&
+    typeof s.completedAt === "string" &&
+    typeof total === "number" &&
+    Number.isFinite(total)
+  );
 }
 
 export function loadProgress(): ProgressStore {
-  if (!canUseStorage()) return EMPTY;
+  if (!canUseStorage()) return emptyStore();
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return EMPTY;
+    if (!raw) return emptyStore();
     const parsed = JSON.parse(raw) as ProgressStore;
-    if (!parsed.sessions || !Array.isArray(parsed.sessions)) return EMPTY;
+    if (!parsed.sessions || !Array.isArray(parsed.sessions)) return emptyStore();
     return {
-      sessions: parsed.sessions,
+      sessions: parsed.sessions.filter(isValidSession),
       badges: Array.isArray(parsed.badges) ? parsed.badges : [],
     };
   } catch {
-    return EMPTY;
+    return emptyStore();
   }
 }
 
@@ -33,7 +54,11 @@ export function saveSession(result: SessionResult): ProgressStore {
   };
 
   if (canUseStorage()) {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    } catch {
+      // Quota เต็ม / SecurityError — ยังคืน next เพื่อให้เกมเล่นต่อได้ (fail เฉพาะการ persist)
+    }
   }
   return next;
 }
